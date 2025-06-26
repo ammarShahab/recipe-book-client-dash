@@ -1,0 +1,15 @@
+@import url("https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,100..900;1,100..900&display=swap");
+
+@import "tailwindcss";
+@plugin "daisyui";
+/* toggle dark light */
+@custom-variant dark (&:where(.dark, .dark *));
+
+.font-bitter {
+  font-family: "Bitter", serif;
+  font-style: normal;
+}
+
+nav a.active {
+  text-decoration: underline;
+}
