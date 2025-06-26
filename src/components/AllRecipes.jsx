@@ -8,7 +8,7 @@ const AllRecipes = () => {
   const [recipes, setRecipes] = useState(initialRecipes);
 
   // const { recipes, setRecipes } = use(AuthContext);
-  // console.log(recipes);
+  console.log(recipes);
   return (
     <div className="mt-20 mb-40">
       <h1 className="text-center text-6xl font-bold">All Recipes</h1>

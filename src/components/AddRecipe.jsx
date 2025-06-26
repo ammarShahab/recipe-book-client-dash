@@ -82,7 +82,7 @@ const AddRecipe = () => {
       });
   };
   return (
-    <div className="max-w-2xl mx-auto p-6 bg-white shadow-md rounded-lg mt-10 mb-20">
+    <div className="max-w-3xl mx-auto p-6 bg-white shadow-md rounded-lg mt-10 mb-20">
       <h1 className="text-3xl font-bold mb-6 text-center text-gray-800">
         Add a New Recipe
       </h1>
