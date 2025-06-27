@@ -33,7 +33,7 @@ const RecipeCard = ({ recipe }) => {
         <button
           onClick={() => handleViewDetails(_id)}
           type="button"
-          className="mt-10 btn btn-primary flex items-center justify-center w-full p-3 font-semibold tracking-wide rounded-md"
+          className="mt-10 btn bg-blue-500 hover:bg-blue-600 transition flex items-center justify-center w-full p-3 font-semibold tracking-wide rounded-md text-white"
         >
           View Details
         </button>
