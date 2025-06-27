@@ -102,7 +102,7 @@ const DashBoardLayout = () => {
       {/* Main content */}
       <div className="flex-1 p-6 lg:ml-50 mt-4 lg:mt-0">
         <h1 className="text-3xl font-bold text-center mb-4">
-          Welcome to the Dashboard
+          Welcome to Your Dashboard
         </h1>
         <Outlet />
       </div>
