@@ -30,11 +30,11 @@ const NavBar = () => {
         Home
       </NavLink>
 
-      {/*  {user && (
-        <NavLink className="py-3" to="/dashboard/addrecipes">
-          Add Recipes
+      {user && (
+        <NavLink className="py-3" to={`/myrecipes/${user.email}`}>
+          My Recipes
         </NavLink>
-      )} */}
+      )}
       <NavLink className="py-3" to="/allrecipes">
         All Recipes
       </NavLink>

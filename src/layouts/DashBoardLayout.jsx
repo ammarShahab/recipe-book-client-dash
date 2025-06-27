@@ -36,7 +36,7 @@ const DashBoardLayout = () => {
               <NavLink
                 to="/"
                 onClick={closeSidebar}
-                className="block px-4 py-2 rounded hover:bg-gray-100 text-gray-700"
+                className="block px-4 py-2 rounded hover:bg-gray-100 text-gray-700 "
               >
                 Home
               </NavLink>
@@ -45,7 +45,11 @@ const DashBoardLayout = () => {
               <NavLink
                 to="/dashboard/allrecipes"
                 onClick={closeSidebar}
-                className="block px-4 py-2 rounded hover:bg-gray-100 text-gray-700"
+                className={({ isActive }) =>
+                  `block px-4 py-2 rounded text-gray-700 ${
+                    isActive ? "bg-gray-200 font-semibold" : "hover:bg-gray-100"
+                  }`
+                }
               >
                 All Recipes
               </NavLink>
@@ -54,14 +58,22 @@ const DashBoardLayout = () => {
               <NavLink
                 to="/dashboard/addrecipes"
                 onClick={closeSidebar}
-                className="block px-4 py-2 rounded hover:bg-gray-100 text-gray-700"
+                className={({ isActive }) =>
+                  `block px-4 py-2 rounded text-gray-700 ${
+                    isActive ? "bg-gray-200 font-semibold" : "hover:bg-gray-100"
+                  }`
+                }
               >
                 Add Recipes
               </NavLink>
               <NavLink
                 to={`/dashboard/myrecipes/${user?.email}`}
                 onClick={closeSidebar}
-                className="block px-4 py-2 rounded hover:bg-gray-100 text-gray-700"
+                className={({ isActive }) =>
+                  `block px-4 py-2 rounded text-gray-700 ${
+                    isActive ? "bg-gray-200 font-semibold" : "hover:bg-gray-100"
+                  }`
+                }
               >
                 My Recipes
               </NavLink>
