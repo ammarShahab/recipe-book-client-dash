@@ -38,7 +38,16 @@ const DashBoardLayout = () => {
                 onClick={closeSidebar}
                 className="block px-4 py-2 rounded hover:bg-gray-100 text-gray-700 "
               >
-                Home
+                Back To Home
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/dashboard"
+                onClick={closeSidebar}
+                className="block px-4 py-2 rounded hover:bg-gray-100 text-gray-700"
+              >
+                Overview
               </NavLink>
             </li>
             <li>

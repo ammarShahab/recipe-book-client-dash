@@ -45,6 +45,19 @@ const router = createBrowserRouter([
           </PrivateRouter>
         ),
       },
+      {
+        path: "/recipe/:id",
+        loader: ({ params }) =>
+          fetch(
+            `https://b11a10-server-side-ashahab007.vercel.app/recipes/${params.id}`
+          ),
+        element: (
+          <PrivateRouter>
+            <RecipeDetails></RecipeDetails>
+          </PrivateRouter>
+        ),
+        hydrateFallbackElement: <Loading></Loading>,
+      },
     ],
   },
   {
@@ -80,19 +93,7 @@ const router = createBrowserRouter([
       },
     ],
   },
-  {
-    path: "/recipe/:id",
-    loader: ({ params }) =>
-      fetch(
-        `https://b11a10-server-side-ashahab007.vercel.app/recipes/${params.id}`
-      ),
-    element: (
-      <PrivateRouter>
-        <RecipeDetails></RecipeDetails>
-      </PrivateRouter>
-    ),
-    hydrateFallbackElement: <Loading></Loading>,
-  },
+
   {
     path: "/auth",
     element: <AuthLayout></AuthLayout>,
