@@ -4,24 +4,19 @@ import Swal from "sweetalert2";
 import AuthContext from "./context/AuthContext";
 
 const AddRecipe = () => {
-  const [isChecked, setIsChecked] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState([]);
   const loggedInUser = use(AuthContext);
   // console.log(loggedInUser?.user?.email);
 
+  const categories = ["Lunch", "Dessert", "Dinner", "Vegan", "Breakfast"];
   const handleChecked = (e) => {
-    e.preventDefault();
-    // console.log(e.target);
-
-    const { value, checked } = e.target;
-    if (checked) {
-      setIsChecked((prev) => [...prev, value]);
-    } else {
-      setIsChecked((prev) => prev.filter((item) => item !== value));
-    }
-
-    console.log(isChecked);
+    const { value } = e.target;
+    setSelectedCategory((prev) =>
+      prev.includes(value)
+        ? prev.filter((cat) => cat !== value)
+        : [...prev, value]
+    );
   };
-
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -53,7 +48,7 @@ const AddRecipe = () => {
       cuisine,
       prepTime,
       likes,
-      isChecked,
+      selectedCategory,
       loggedInUser,
       email,
       name,
@@ -169,23 +164,32 @@ const AddRecipe = () => {
             className="border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
         </div>
+
         {/* Categories section */}
         <div className="flex flex-col">
           <label className="text-sm font-medium text-gray-700 mb-1">
             Categories
           </label>
           <div className="flex flex-col gap-2">
-            <div className="flex items-center gap-2">
-              <input
-                type="checkbox"
-                name="Breakfast"
-                value="Breakfast"
-                onChange={handleChecked}
-                className="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
-              />
-              <label className="text-sm text-gray-700">Breakfast</label>
-            </div>
-            <div className="flex items-center gap-2">
+            {categories.map((category, index) => (
+              // <>
+              <div className="flex items-center gap-2">
+                <input
+                  type="checkbox"
+                  name={category}
+                  value={category}
+                  checked={selectedCategory.includes(category)}
+                  onChange={handleChecked}
+                  className="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                />
+                <label key={index} className="text-sm text-gray-700">
+                  {category}
+                </label>
+                {/* </>; */}
+              </div>
+            ))}
+
+            {/*  <div className="flex items-center gap-2">
               <input
                 type="checkbox"
                 name="Lunch"
@@ -224,7 +228,7 @@ const AddRecipe = () => {
                 className="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
               />
               <label className="text-sm text-gray-700">Vegan</label>
-            </div>
+            </div> */}
           </div>
         </div>
 
