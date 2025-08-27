@@ -1,5 +1,4 @@
 import React, { use, useState } from "react";
-import { data } from "react-router";
 import Swal from "sweetalert2";
 import AuthContext from "./context/AuthContext";
 
@@ -9,6 +8,7 @@ const AddRecipe = () => {
   // console.log(loggedInUser?.user?.email);
 
   const categories = ["Lunch", "Dessert", "Dinner", "Vegan", "Breakfast"];
+
   const handleChecked = (e) => {
     const { value } = e.target;
     setSelectedCategory((prev) =>
@@ -54,7 +54,7 @@ const AddRecipe = () => {
       name,
     };
 
-    // console.log(newAddedRecipes);
+    console.log("Added recipe", newAddedRecipes);
 
     fetch("https://b11a10-server-side-ashahab007.vercel.app/recipes", {
       method: "POST",
