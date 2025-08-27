@@ -178,7 +178,7 @@ const AddRecipe = () => {
                   type="checkbox"
                   name={category}
                   value={category}
-                  checked={selectedCategory.includes(category)}
+                  // checked={selectedCategory.includes(category)}
                   onChange={handleChecked}
                   className="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
                 />
@@ -188,47 +188,6 @@ const AddRecipe = () => {
                 {/* </>; */}
               </div>
             ))}
-
-            {/*  <div className="flex items-center gap-2">
-              <input
-                type="checkbox"
-                name="Lunch"
-                value="Lunch"
-                onChange={handleChecked}
-                className="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
-              />
-              <label className="text-sm text-gray-700">Lunch</label>
-            </div>
-            <div className="flex items-center gap-2">
-              <input
-                type="checkbox"
-                name="Dinner"
-                value="Dinner"
-                onChange={handleChecked}
-                className="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
-              />
-              <label className="text-sm text-gray-700">Dinner</label>
-            </div>
-            <div className="flex items-center gap-2">
-              <input
-                type="checkbox"
-                name="Dessert"
-                value="Dessert"
-                onChange={handleChecked}
-                className="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
-              />
-              <label className="text-sm text-gray-700">Dessert</label>
-            </div>
-            <div className="flex items-center gap-2">
-              <input
-                type="checkbox"
-                name="Vegan"
-                value="Vegan"
-                onChange={handleChecked}
-                className="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
-              />
-              <label className="text-sm text-gray-700">Vegan</label>
-            </div> */}
           </div>
         </div>
 
