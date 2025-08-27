@@ -9,6 +9,8 @@ const MyRecipes = () => {
   // console.log(myrecipes);
   const [isDelete, setIsDelete] = useState(myrecipes);
   const [open, setOpen] = useState(false);
+  const categories = ["Lunch", "Dessert", "Dinner", "Vegan", "Breakfast"];
+  const [selectedCategory, setSelectedCategory] = useState([]);
 
   const onOpenModal = () => setOpen(true);
   const onCloseModal = () => setOpen(false);
@@ -52,6 +54,10 @@ const MyRecipes = () => {
       }
     });
   };
+
+  const handleChecked = () => {};
+
+  const handleUpdate = () => {};
 
   return (
     <div className="min-h-screen bg-gray-100 p-5">
@@ -115,13 +121,151 @@ const MyRecipes = () => {
                   </button>
 
                   {/* Modal */}
-                  <Modal open={open} onClose={onCloseModal} center>
-                    <h2>Simple centered modal</h2>
-                    <p>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                      Nullam pulvinar risus non risus hendrerit venenatis.
-                      Pellentesque sit amet hendrerit risus, sed porttitor quam.
-                    </p>
+                  <Modal
+                    classNames="w-full"
+                    open={open}
+                    onClose={onCloseModal}
+                    styles={{ modal: { width: "600px", maxWidth: "90%" } }}
+                    center
+                  >
+                    {/* Form */}
+                    <form onSubmit={handleUpdate} className="space-y-4 w-full">
+                      <div className="flex flex-col">
+                        <label className="text-sm font-medium text-gray-700 mb-1">
+                          Recipe Image URL
+                        </label>
+                        <input
+                          type="text"
+                          id="image"
+                          name="image"
+                          defaultValue={myrecipe?.image}
+                          placeholder="Enter image URL"
+                          className="border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        />
+                      </div>
+
+                      <div className="flex flex-col">
+                        <label className="text-sm font-medium text-gray-700 mb-1">
+                          Title
+                        </label>
+                        <input
+                          type="text"
+                          defaultValue={myrecipe.title}
+                          id="title"
+                          name="title"
+                          required
+                          className="border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        />
+                      </div>
+
+                      <div className="flex flex-col">
+                        <label className="text-sm font-medium text-gray-700 mb-1">
+                          Ingredients
+                        </label>
+                        <textarea
+                          defaultValue={myrecipe?.ingredients}
+                          id="ingredients"
+                          name="ingredients"
+                          required
+                          rows="4"
+                          className="border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        ></textarea>
+                      </div>
+
+                      <div className="flex flex-col">
+                        <label className="text-sm font-medium text-gray-700 mb-1">
+                          Instructions
+                        </label>
+                        <textarea
+                          id="instructions"
+                          name="instructions"
+                          required
+                          rows="6"
+                          className="border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        ></textarea>
+                      </div>
+
+                      <div className="flex flex-col">
+                        <label className="text-sm font-medium text-gray-700 mb-1">
+                          Cuisine Type
+                        </label>
+                        <select
+                          id="cuisine"
+                          name="cuisine"
+                          className="border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        >
+                          <option value="Italian">Italian</option>
+                          <option value="Mexican">Mexican</option>
+                          <option value="Indian">Indian</option>
+                          <option value="Chinese">Chinese</option>
+                          <option value="Others">Others</option>
+                        </select>
+                      </div>
+
+                      <div className="flex flex-col">
+                        <label className="text-sm font-medium text-gray-700 mb-1">
+                          Preparation Time (minutes)
+                        </label>
+                        <input
+                          type="number"
+                          id="prepTime"
+                          name="prepTime"
+                          required
+                          min="0"
+                          className="border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        />
+                      </div>
+
+                      {/* Categories section */}
+                      <div className="flex flex-col">
+                        <label className="text-sm font-medium text-gray-700 mb-1">
+                          Categories
+                        </label>
+                        <div className="flex flex-col gap-2">
+                          {categories.map((category, index) => (
+                            // <>
+                            <div className="flex items-center gap-2">
+                              <input
+                                type="checkbox"
+                                name={category}
+                                value={category}
+                                // checked={selectedCategory.includes(category)}
+                                onChange={handleChecked}
+                                className="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                              />
+                              <label
+                                key={index}
+                                className="text-sm text-gray-700"
+                              >
+                                {category}
+                              </label>
+                              {/* </>; */}
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      <div className="flex flex-col">
+                        <label className="text-sm font-medium text-gray-700 mb-1">
+                          Likes
+                        </label>
+                        <input
+                          type="number"
+                          id="likes"
+                          name="likes"
+                          defaultValue={0}
+                          // readOnly
+                          className="border border-gray-300 rounded-md p-2 bg-gray-100 cursor-not-allowed"
+                        />
+                      </div>
+
+                      <button
+                        type="submit"
+                        className="w-full py-2 px-4 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      >
+                        Update
+                      </button>
+                    </form>
                   </Modal>
                   <button
                     onClick={() => handleDelete(myrecipe?._id)}
@@ -133,6 +277,7 @@ const MyRecipes = () => {
                 <div className="text-gray-600 text-sm">
                   Likes: {myrecipe?.likes}
                 </div>
+                {console.log(myrecipe)}
               </div>
             </div>
           ))}
