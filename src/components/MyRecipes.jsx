@@ -1,11 +1,17 @@
 import React, { useState } from "react";
+import Modal from "react-responsive-modal";
 import { useLoaderData } from "react-router";
 import Swal from "sweetalert2";
+import "react-responsive-modal/styles.css";
 
 const MyRecipes = () => {
   const myrecipes = useLoaderData();
   // console.log(myrecipes);
   const [isDelete, setIsDelete] = useState(myrecipes);
+  const [open, setOpen] = useState(false);
+
+  const onOpenModal = () => setOpen(true);
+  const onCloseModal = () => setOpen(false);
 
   const handleDelete = (id) => {
     // console.log(id);
@@ -56,7 +62,10 @@ const MyRecipes = () => {
       ) : (
         <div className="grid gap-4 grid-cols-2 max-w-4xl mx-auto max-[600px]:grid-cols-1">
           {myrecipes?.map((myrecipe) => (
-            <div className="bg-white rounded-lg shadow-lg w-full max-w-md overflow-hidden">
+            <div
+              key={myrecipe?._id}
+              className="bg-white rounded-lg shadow-lg w-full max-w-md overflow-hidden"
+            >
               <img
                 src={myrecipe?.image}
                 alt="Fluffy Pancakes"
@@ -98,11 +107,22 @@ const MyRecipes = () => {
                 </div>
                 <div className="flex gap-3 mb-3">
                   <button
+                    onClick={onOpenModal}
                     // onClick={updateRecipe}
                     className="bg-blue-500 hover:bg-blue-600 text-white text-sm font-medium px-4 py-2 rounded transition-colors"
                   >
                     Update
                   </button>
+
+                  {/* Modal */}
+                  <Modal open={open} onClose={onCloseModal} center>
+                    <h2>Simple centered modal</h2>
+                    <p>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                      Nullam pulvinar risus non risus hendrerit venenatis.
+                      Pellentesque sit amet hendrerit risus, sed porttitor quam.
+                    </p>
+                  </Modal>
                   <button
                     onClick={() => handleDelete(myrecipe?._id)}
                     className="bg-red-500 hover:bg-red-600 text-white text-sm font-medium px-4 py-2 rounded transition-colors"
