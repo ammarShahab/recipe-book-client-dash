@@ -11,8 +11,12 @@ const MyRecipes = () => {
   const [open, setOpen] = useState(false);
   const categories = ["Lunch", "Dessert", "Dinner", "Vegan", "Breakfast"];
   const [selectedCategory, setSelectedCategory] = useState([]);
+  const [selectedRecipe, setSelectedRecipe] = useState(null);
 
-  const onOpenModal = () => setOpen(true);
+  const onOpenModal = (recipe) => {
+    setSelectedRecipe(recipe);
+    setOpen(true);
+  };
   const onCloseModal = () => setOpen(false);
 
   const handleDelete = (id) => {
@@ -67,12 +71,25 @@ const MyRecipes = () => {
   };
 
   const handleUpdate = (e, id) => {
+    console.log(id);
+
     e.preventDefault();
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData.entries());
     delete data.categories;
-    const updatedRecipe = { ...data, id, selectedCategory };
+    const updatedRecipe = { ...data, _id: id, isChecked: selectedCategory };
     console.log(updatedRecipe);
+    // fetch(`https://b11a10-server-side-ashahab007.vercel.app/recipes/${id}`, {
+    fetch(`http://localhost:3000/recipes/${id}`, {
+      method: "PUT",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify(updatedRecipe),
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        console.log("Update Result", result);
+      })
+      .catch((err) => console.error("Error:", err));
   };
 
   return (
@@ -129,7 +146,7 @@ const MyRecipes = () => {
                 </div>
                 <div className="flex gap-3 mb-3">
                   <button
-                    onClick={onOpenModal}
+                    onClick={() => onOpenModal(myrecipe)}
                     // onClick={updateRecipe}
                     className="bg-blue-500 hover:bg-blue-600 text-white text-sm font-medium px-4 py-2 rounded transition-colors"
                   >
@@ -145,147 +162,153 @@ const MyRecipes = () => {
                     center
                   >
                     {/* Form */}
-                    <form
-                      onSubmit={(e) => handleUpdate(e, myrecipe._id)}
-                      className="space-y-4 w-full"
-                    >
-                      <div className="flex flex-col">
-                        <label className="text-sm font-medium text-gray-700 mb-1">
-                          Recipe Image URL
-                        </label>
-                        <input
-                          type="text"
-                          id="image"
-                          name="image"
-                          defaultValue={myrecipe?.image}
-                          placeholder="Enter image URL"
-                          className="border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                        />
-                      </div>
-
-                      <div className="flex flex-col">
-                        <label className="text-sm font-medium text-gray-700 mb-1">
-                          Title
-                        </label>
-                        <input
-                          type="text"
-                          defaultValue={myrecipe.title}
-                          id="title"
-                          name="title"
-                          required
-                          className="border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                        />
-                      </div>
-
-                      <div className="flex flex-col">
-                        <label className="text-sm font-medium text-gray-700 mb-1">
-                          Ingredients
-                        </label>
-                        <textarea
-                          defaultValue={myrecipe?.ingredients}
-                          id="ingredients"
-                          name="ingredients"
-                          required
-                          rows="4"
-                          className="border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                        ></textarea>
-                      </div>
-
-                      <div className="flex flex-col">
-                        <label className="text-sm font-medium text-gray-700 mb-1">
-                          Instructions
-                        </label>
-                        <textarea
-                          id="instructions"
-                          name="instructions"
-                          required
-                          rows="6"
-                          className="border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                          defaultValue={myrecipe?.instructions}
-                        ></textarea>
-                      </div>
-
-                      <div className="flex flex-col">
-                        <label className="text-sm font-medium text-gray-700 mb-1">
-                          Cuisine Type
-                        </label>
-                        <select
-                          id="cuisine"
-                          defaultValue={myrecipe?.cuisine}
-                          name="cuisine"
-                          className="border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                        >
-                          <option value="Italian">Italian</option>
-                          <option value="Mexican">Mexican</option>
-                          <option value="Indian">Indian</option>
-                          <option value="Chinese">Chinese</option>
-                          <option value="Others">Others</option>
-                        </select>
-                      </div>
-
-                      <div className="flex flex-col">
-                        <label className="text-sm font-medium text-gray-700 mb-1">
-                          Preparation Time (minutes)
-                        </label>
-                        <input
-                          type="number"
-                          defaultValue={myrecipe?.prepTime}
-                          id="prepTime"
-                          name="prepTime"
-                          required
-                          min="0"
-                          className="border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                        />
-                      </div>
-
-                      {/* Categories section */}
-                      <div className="flex flex-col">
-                        <label className="text-sm font-medium text-gray-700 mb-1">
-                          Categories
-                        </label>
-                        <div className="flex flex-col gap-2">
-                          {categories.map((category, index) => (
-                            <div className="flex items-center gap-2">
-                              <input
-                                type="checkbox"
-                                name="categories"
-                                value={category}
-                                onChange={handleChecked}
-                                // defaultValue={myrecipe?.isChecked}
-                                className="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
-                              />
-                              <label
-                                key={index}
-                                className="text-sm text-gray-700"
-                              >
-                                {category}
-                              </label>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-
-                      <div className="flex flex-col">
-                        <label className="text-sm font-medium text-gray-700 mb-1">
-                          Likes
-                        </label>
-                        <input
-                          type="number"
-                          id="likes"
-                          name="likes"
-                          defaultValue={0}
-                          // readOnly
-                          className="border border-gray-300 rounded-md p-2 bg-gray-100 cursor-not-allowed"
-                        />
-                      </div>
-
-                      <button
-                        type="submit"
-                        className="w-full py-2 px-4 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    {selectedRecipe && (
+                      <form
+                        onSubmit={(e) => handleUpdate(e, selectedRecipe._id)}
+                        className="space-y-4 w-full"
                       >
-                        Update
-                      </button>
-                    </form>
+                        <div className="flex flex-col">
+                          <label className="text-sm font-medium text-gray-700 mb-1">
+                            Recipe Image URL
+                          </label>
+                          <input
+                            type="text"
+                            id="image"
+                            name="image"
+                            defaultValue={selectedRecipe?.image}
+                            placeholder="Enter image URL"
+                            className="border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          />
+                        </div>
+
+                        <div className="flex flex-col">
+                          <label className="text-sm font-medium text-gray-700 mb-1">
+                            Title
+                          </label>
+                          <input
+                            type="text"
+                            defaultValue={selectedRecipe?.title}
+                            id="title"
+                            name="title"
+                            required
+                            className="border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          />
+                        </div>
+
+                        <div className="flex flex-col">
+                          <label className="text-sm font-medium text-gray-700 mb-1">
+                            Ingredients
+                          </label>
+                          <textarea
+                            defaultValue={selectedRecipe?.ingredients}
+                            id="ingredients"
+                            name="ingredients"
+                            required
+                            rows="4"
+                            className="border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          ></textarea>
+                        </div>
+
+                        <div className="flex flex-col">
+                          <label className="text-sm font-medium text-gray-700 mb-1">
+                            Instructions
+                          </label>
+                          <textarea
+                            id="instructions"
+                            name="instructions"
+                            required
+                            rows="6"
+                            className="border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            defaultValue={selectedRecipe?.instructions}
+                          ></textarea>
+                        </div>
+
+                        <div className="flex flex-col">
+                          <label className="text-sm font-medium text-gray-700 mb-1">
+                            Cuisine Type
+                          </label>
+                          <select
+                            id="cuisine"
+                            defaultValue={selectedRecipe?.cuisine}
+                            name="cuisine"
+                            className="border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          >
+                            <option value="Italian">Italian</option>
+                            <option value="Mexican">Mexican</option>
+                            <option value="Indian">Indian</option>
+                            <option value="Chinese">Chinese</option>
+                            <option value="Others">Others</option>
+                          </select>
+                        </div>
+
+                        <div className="flex flex-col">
+                          <label className="text-sm font-medium text-gray-700 mb-1">
+                            Preparation Time (minutes)
+                          </label>
+                          <input
+                            type="number"
+                            defaultValue={selectedRecipe?.prepTime}
+                            id="prepTime"
+                            name="prepTime"
+                            required
+                            min="0"
+                            className="border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          />
+                        </div>
+
+                        {/* Categories section */}
+                        <div className="flex flex-col">
+                          <label className="text-sm font-medium text-gray-700 mb-1">
+                            Categories
+                          </label>
+                          <div className="flex flex-col gap-2">
+                            {categories.map((category, index) => (
+                              <div
+                                key={index}
+                                className="flex items-center gap-2"
+                              >
+                                <input
+                                  type="checkbox"
+                                  name="categories"
+                                  value={category}
+                                  onChange={handleChecked}
+                                  // defaultValue={myrecipe?.isChecked}
+                                  className="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                                />
+                                <label
+                                  key={index}
+                                  className="text-sm text-gray-700"
+                                >
+                                  {category}
+                                </label>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+
+                        <div className="flex flex-col">
+                          <label className="text-sm font-medium text-gray-700 mb-1">
+                            Likes
+                          </label>
+                          <input
+                            type="number"
+                            id="likes"
+                            name="likes"
+                            defaultValue={0}
+                            // readOnly
+                            className="border border-gray-300 rounded-md p-2 bg-gray-100 cursor-not-allowed"
+                          />
+                        </div>
+
+                        <button
+                          // onSubmit={(e) => handleUpdate(e, myrecipe._id)}
+                          type="submit"
+                          className="w-full py-2 px-4 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        >
+                          Update
+                        </button>
+                      </form>
+                    )}
                   </Modal>
                   <button
                     onClick={() => handleDelete(myrecipe?._id)}
