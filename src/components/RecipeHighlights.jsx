@@ -33,7 +33,7 @@ const RecipeHighlights = () => {
 
   return (
     <section
-      className={`bg-gray-100 py-10 text-center mt-10 rounded-2xl mb-20 ${
+      className={` py-10 text-center mt-20 rounded-2xl ${
         theme ? "dark" : ""
       }  dark:bg-zinc-600`}
     >
@@ -43,7 +43,7 @@ const RecipeHighlights = () => {
       <p className="text-xl text-gray-600 dark:text-white">
         Builds trust by showing achievements and growth.
       </p>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 max-w-6xl mx-auto px-4 mt-10">
+      <div className=" grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 max-w-7xl mx-auto px-4 mt-10">
         {stats.map((stat, index) => (
           <div
             key={index}

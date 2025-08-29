@@ -76,8 +76,11 @@ const MyRecipes = () => {
     e.preventDefault();
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData.entries());
-    delete data.categories;
-    const updatedRecipe = { ...data, _id: id, isChecked: selectedCategory };
+    delete data.categories; //for extra category show in db
+    const updatedRecipe = {
+      ...data,
+      isChecked: selectedCategory,
+    };
     console.log(updatedRecipe);
     // fetch(`https://b11a10-server-side-ashahab007.vercel.app/recipes/${id}`, {
     fetch(`http://localhost:3000/recipes/${id}`, {
@@ -88,6 +91,18 @@ const MyRecipes = () => {
       .then((res) => res.json())
       .then((result) => {
         console.log("Update Result", result);
+        if (result.modifiedCount > 0) {
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Your recipe has been updated",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+
+          setOpen(false);
+          window.location.reload();
+        }
       })
       .catch((err) => console.error("Error:", err));
   };
@@ -295,7 +310,7 @@ const MyRecipes = () => {
                             id="likes"
                             name="likes"
                             defaultValue={0}
-                            // readOnly
+                            readOnly
                             className="border border-gray-300 rounded-md p-2 bg-gray-100 cursor-not-allowed"
                           />
                         </div>

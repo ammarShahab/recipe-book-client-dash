@@ -9,7 +9,9 @@ const TopRecipes = () => {
   // console.log(theme);
 
   useEffect(() => {
-    fetch("https://b11a10-server-side-ashahab007.vercel.app/top-recipes")
+    setIsLoading(true);
+    // fetch("https://b11a10-server-side-ashahab007.vercel.app/top-recipes")
+    fetch("http://localhost:3000/top-recipes")
       .then((res) => res.json())
       .then((data) => {
         // console.log(data);
@@ -27,7 +29,7 @@ const TopRecipes = () => {
 
   return (
     <div
-      className={`max-w-7xl mx-auto px-4 py-6 mt-10 mb-20 bg-lime-100 p-4 rounded-2xl ${
+      className={`max-w-7xl mx-auto px-4 py-6 mt-20  p-4 rounded-2xl ${
         theme ? "dark" : ""
       }  dark:bg-zinc-600`}
     >
@@ -49,11 +51,11 @@ const TopRecipes = () => {
           delaySpeed={1000}
         ></Typewriter>
       </h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 ">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 ">
         {topRecipes.map((recipe) => (
           <div
             key={recipe._id}
-            className={`bg-white rounded-lg shadow-md overflow-hidden text-center p-4 ${
+            className={`bg-white rounded-lg shadow-md overflow-hidden text-center p-4 hover:scale-[1.02] transition duration-200 ${
               theme ? "dark" : ""
             }  dark:bg-zinc-400`}
           >
