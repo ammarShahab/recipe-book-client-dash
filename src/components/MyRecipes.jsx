@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Modal from "react-responsive-modal";
 import { useLoaderData } from "react-router";
 import Swal from "sweetalert2";
 import "react-responsive-modal/styles.css";
+import AuthContext from "./context/AuthContext";
 
 const MyRecipes = () => {
   const myrecipes = useLoaderData();
@@ -12,6 +13,7 @@ const MyRecipes = () => {
   const categories = ["Lunch", "Dessert", "Dinner", "Vegan", "Breakfast"];
   const [selectedCategory, setSelectedCategory] = useState([]);
   const [selectedRecipe, setSelectedRecipe] = useState(null);
+  const { theme, setTheme } = useContext(AuthContext);
 
   const onOpenModal = (recipe) => {
     setSelectedRecipe(recipe);
@@ -108,14 +110,14 @@ const MyRecipes = () => {
   };
 
   return (
-    <div className=" max-w-7xl mx-auto mt-5">
-      <div className=" ">
+    <div className={`${theme ? "dark" : ""}  dark:bg-zinc-600`}>
+      <div className=" dark:bg-zinc-600">
         {myrecipes?.length == 0 ? (
-          <div className="text-center mt-10">
+          <div className="text-center">
             <h1 className="font-extrabold text-4xl">No Recipe Found</h1>
           </div>
         ) : (
-          <div className="grid grid-cols-2 gap-1.5">
+          <div className="max-w-7xl mx-auto grid grid-cols-2 gap-1.5 pt-10">
             {myrecipes?.map((myrecipe) => (
               <div
                 key={myrecipe?._id}

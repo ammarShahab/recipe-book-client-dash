@@ -5,7 +5,7 @@ const NewsLetter = () => {
   const { theme, setTheme } = useContext(AuthContext);
   return (
     <div
-      className="w-full dark:bg-gray-500 mt-20 "
+      className="w-full dark:bg-gray-500 py-20"
       style={{
         backgroundImage:
           "url('https://i.ibb.co/5g0BzRtR/banner-Imag2-optinal.jpg')",

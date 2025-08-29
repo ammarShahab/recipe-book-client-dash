@@ -8,7 +8,7 @@ const Footer = () => {
   const { theme, setTheme } = useContext(AuthContext);
   return (
     <footer
-      className={`bg-[#f1f1ee]  py-10 px-5 text-center font-sans text-gray-800 ${
+      className={`bg-[#f1f1ee]  pt-20 px-5 text-center font-sans text-gray-800 ${
         theme ? "dark" : ""
       }  dark:bg-zinc-600`}
     >

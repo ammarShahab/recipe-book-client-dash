@@ -33,9 +33,9 @@ const RecipeHighlights = () => {
 
   return (
     <section
-      className={` py-10 text-center mt-20 rounded-2xl ${
+      className={` py-10 text-center ${
         theme ? "dark" : ""
-      }  dark:bg-zinc-600`}
+      }  dark:bg-zinc-600 pt-24`}
     >
       <h2 className="text-5xl font-bold mb-6 font-bitter dark:text-white">
         Recipe Highlights
