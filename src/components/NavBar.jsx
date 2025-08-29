@@ -26,33 +26,36 @@ const NavBar = () => {
 
   const links = (
     <>
-      <NavLink className="py-3" to="/">
+      <NavLink className="py-2 px-1 font-semibold  text-lg" to="/">
         Home
       </NavLink>
 
       {user && (
-        <NavLink className="py-3" to={`/myrecipes/${user.email}`}>
+        <NavLink
+          className="py-2 px-1 font-semibold text-lg"
+          to={`/myrecipes/${user.email}`}
+        >
           My Recipes
         </NavLink>
       )}
-      <NavLink className="py-3" to="/allrecipes">
+      <NavLink className="py-2 px-1 font-semibold text-lg" to="/allrecipes">
         All Recipes
       </NavLink>
 
       {user && (
-        <NavLink className="py-3" to="/dashboard">
+        <NavLink className="py-2 px-1 font-semibold text-lg" to="/dashboard">
           Dashboard
         </NavLink>
       )}
 
-      <NavLink className="py-3" to="/aboutUs">
+      <NavLink className="py-2 px-1 font-semibold text-lg" to="/aboutUs">
         About Us
       </NavLink>
     </>
   );
   return (
     <div
-      className={` bg-[#584b45] ${
+      className={`bg-[#584b45] ${
         theme ? "dark" : ""
       } dark:bg-zinc-600 shadow-sm`}
     >
@@ -86,7 +89,7 @@ const NavBar = () => {
           </div>
           <div className="flex gap-0 sm:gap-2 items-center">
             <img className="w-8 sm:w-16" src={logo} alt="logo" />
-            <a className="tesxt-xs sm:text-xl font-extrabold text-[#dedbda] ">
+            <a className="text-xs sm:text-xl font-extrabold text-[#dedbda] ">
               DishDiary
             </a>
           </div>

@@ -10,6 +10,13 @@
   font-style: normal;
 }
 
+/* From https://css.glass */
+
 nav a.active {
-  text-decoration: underline;
+  background: rgba(255, 255, 255, 0.45);
+  box-shadow: 20px 20px 40px -6px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(0px);
+  -webkit-backdrop-filter: blur(0px);
+  border-radius: 10px;
+  color: #584b45;
 }
