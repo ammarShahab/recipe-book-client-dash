@@ -114,14 +114,16 @@ const MyRecipes = () => {
       <div className=" dark:bg-zinc-600">
         {myrecipes?.length == 0 ? (
           <div className="text-center">
-            <h1 className="font-extrabold text-4xl">No Recipe Found</h1>
+            <h1 className="font-extrabold text-4xl dark:text-gray-300">
+              No Recipe Found
+            </h1>
           </div>
         ) : (
           <div className="max-w-7xl mx-auto grid grid-cols-2 gap-1.5 pt-10">
             {myrecipes?.map((myrecipe) => (
               <div
                 key={myrecipe?._id}
-                className="bg-white rounded-lg shadow-lg w-full overflow-hidden"
+                className="bg-white rounded-lg shadow-lg w-full overflow-hidden dark:bg-gray-600"
               >
                 <img
                   src={myrecipe?.image}
@@ -129,10 +131,10 @@ const MyRecipes = () => {
                   className="w-full h-48 object-cover"
                 />
                 <div className="p-6">
-                  <h2 className="text-2xl font-bold text-gray-800 mb-2">
+                  <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-300 mb-2">
                     {myrecipe?.title}
                   </h2>
-                  <div className="flex justify-between text-gray-600 text-sm mb-3">
+                  <div className="flex justify-between text-gray-600 text-sm mb-3 dark:text-gray-300">
                     {/* <span>Cuisine: Others</span> */}
                     <span>Preparation Time: {myrecipe?.prepTime} min</span>
                   </div>
@@ -147,18 +149,18 @@ const MyRecipes = () => {
                     ))}
                   </div>
                   <div className="mb-4">
-                    <h3 className="text-lg font-semibold text-gray-700 mb-1">
+                    <h3 className="text-lg font-semibold text-gray-700 mb-1 dark:text-gray-300">
                       Ingredients
                     </h3>
-                    <ul className="list-disc pl-5 text-gray-600 text-sm">
+                    <ul className="list-disc pl-5 text-gray-600 dark:text-gray-300 text-sm">
                       {myrecipe?.ingredients}
                     </ul>
                   </div>
                   <div className="mb-4">
-                    <h3 className="text-lg font-semibold text-gray-700 mb-1">
+                    <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-300 mb-1">
                       Instructions
                     </h3>
-                    <p className="text-gray-600 text-sm">
+                    <p className="text-gray-600 text-sm dark:text-gray-300">
                       {myrecipe?.instructions}
                     </p>
                   </div>

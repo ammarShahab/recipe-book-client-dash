@@ -57,10 +57,10 @@ const NavBar = () => {
     <div
       className={`bg-[#584b45] ${
         theme ? "dark" : ""
-      } dark:bg-zinc-600 shadow-sm`}
+      } dark:bg-zinc-700 shadow-sm`}
     >
       <div
-        className={`navbar bg-[#584b45] dark:bg-zinc-600 shadow-sm max-w-7xl mx-auto`}
+        className={`navbar bg-[#584b45] dark:bg-zinc-700 shadow-sm max-w-7xl mx-auto`}
       >
         <div className="navbar-start">
           <div className="dropdown">

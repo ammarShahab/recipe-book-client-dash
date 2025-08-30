@@ -8,11 +8,11 @@ const Footer = () => {
   const { theme, setTheme } = useContext(AuthContext);
   return (
     <footer
-      className={`bg-[#f1f1ee]  pt-20 px-5 text-center font-sans text-gray-800 ${
+      className={`bg-[#f1f1ee]  px-5 text-center font-sans text-gray-800 ${
         theme ? "dark" : ""
-      }  dark:bg-zinc-600`}
+      }  dark:bg-zinc-700`}
     >
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-6xl mx-auto pt-10">
         <div className="flex justify-center items-center gap-4 mb-4 ">
           <img src={logo} className="w-8" alt="logo" />
           <h1 className="text-2xl font-bold md:text-3xl dark:text-white">
