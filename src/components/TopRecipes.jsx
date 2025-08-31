@@ -4,7 +4,7 @@ import { Typewriter } from "react-simple-typewriter";
 import AuthContext from "./context/AuthContext";
 
 const TopRecipes = () => {
-  const { setIsLoading, theme, setTheme } = use(AuthContext);
+  const { setIsLoading, theme } = use(AuthContext);
   const [topRecipes, setTopRecipes] = useState([]);
   // console.log(theme);
 
@@ -28,9 +28,9 @@ const TopRecipes = () => {
   };
 
   return (
-    <div className={` ${theme ? "dark" : ""}  dark:bg-zinc-600 pt-24`}>
-      <div className=" max-w-7xl mx-auto">
-        <h1 className="text-5xl font-bold mb-6 font-bitter text-center text-amber-950 dark:text-white ">
+    <div className={`${theme ? "dark" : ""} dark:bg-zinc-600 pt-24`}>
+      <div className="max-w-7xl mx-auto">
+        <h1 className="text-3xl lg:text-5xl font-bold mb-6 font-bitter text-center text-amber-950 dark:text-white ">
           Top
           <Typewriter
             words={[

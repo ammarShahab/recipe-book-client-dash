@@ -20,7 +20,7 @@ const NewsLetter = () => {
             theme ? "dark" : ""
           }  dark:bg-zinc-600`}
         >
-          <h1 className="text-5xl antialiased font-bold leading-none text-center font-bitter dark:text-white ">
+          <h1 className="text-3xl lg:text-5xl antialiased font-bold leading-none text-center font-bitter dark:text-white ">
             Get Our Updates
           </h1>
           <p className="pt-2 pb-8 text-xl antialiased text-center dark:text-white">

@@ -3,7 +3,7 @@ import CountUp from "react-countup";
 import AuthContext from "./context/AuthContext";
 
 const RecipeHighlights = () => {
-  const { theme, setTheme } = use(AuthContext);
+  const { theme } = use(AuthContext);
   const stats = [
     {
       title: "Recipes Added",
@@ -37,7 +37,7 @@ const RecipeHighlights = () => {
         theme ? "dark" : ""
       }  dark:bg-zinc-600 pt-24`}
     >
-      <h2 className="text-5xl font-bold mb-6 font-bitter dark:text-white">
+      <h2 className="text-3xl lg:text-5xl font-bold mb-6 font-bitter dark:text-white">
         Recipe Highlights
       </h2>
       <p className="text-xl text-gray-600 dark:text-white">
