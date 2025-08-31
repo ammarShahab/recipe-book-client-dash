@@ -6,7 +6,7 @@ import UserInfoDashBoard from "./UserInfoDashBoard";
 const OverView = () => {
   const [allRecipes, setAllRecipes] = useState([]);
   const [myRecipes, setMyRecipes] = useState([]);
-  const { user } = use(AuthContext);
+  const { user, theme } = use(AuthContext);
   const userEmail = user.email; // Ideally from auth context
   console.log(user.email);
 
@@ -44,8 +44,8 @@ const OverView = () => {
     fetchRecipes();
   }, [userEmail]);
 
-  console.log(allRecipes);
-  console.log(myRecipes);
+  /*  console.log(allRecipes);
+  console.log(myRecipes); */
 
   const topLikedRecipe = allRecipes.reduce(
     (max, recipe) =>
@@ -56,8 +56,8 @@ const OverView = () => {
   //   console.log("top", topLikedRecipe);
 
   return (
-    <div>
-      <h1 className="text-3xl font-bold p-4">Overview</h1>
+    <div className={`${theme ? "dark" : ""}  dark:bg-zinc-600 `}>
+      <h1 className={`text-3xl font-bold p-4 dark:text-gray-200`}>Overview</h1>
 
       <StatsCard
         allRecipes={allRecipes}

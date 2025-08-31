@@ -9,7 +9,6 @@ import LogIn from "./components/LogIn";
 import Register from "./components/Register";
 import AuthLayout from "./layouts/AuthLayout";
 import Error404 from "./components/Error404";
-import PrilvateRouter from "./components/provider/PrivateRouter";
 import PrivateRouter from "./components/provider/PrivateRouter";
 import Loading from "./components/Loading";
 import RecipeDetails from "./components/RecipeDetails";
