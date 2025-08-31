@@ -16,7 +16,7 @@ const DashBoardLayout = () => {
       }  dark:bg-zinc-600`}
     >
       {/* Mobile Navbar */}
-      <div className="lg:hidden flex items-center justify-between bg-[#584b45] p-4 shadow-md z-50">
+      <div className="lg:hidden flex items-center justify-between bg-[#584b45] p-4 shadow-md z-40">
         <h1 className="text-xl text-white font-bold">Dashboard</h1>
         <button
           onClick={toggleSidebar}
@@ -28,7 +28,7 @@ const DashBoardLayout = () => {
 
       {/* Sidebar */}
       <div
-        className={`fixed top-0 left-0 w-64 min-h-screen bg-white shadow-lg transform transition-transform duration-200 z-40 
+        className={`fixed top-0 left-0 w-64 min-h-screen bg-white shadow-lg transform transition-transform duration-200 z-50 
       ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"} ${
           theme ? "dark" : ""
         }  dark:bg-zinc-800 

@@ -48,7 +48,7 @@ const TopRecipes = () => {
             delaySpeed={1000}
           ></Typewriter>
         </h1>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 ">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 p-2">
           {topRecipes.map((recipe) => (
             <div
               key={recipe._id}

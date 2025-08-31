@@ -119,7 +119,7 @@ const MyRecipes = () => {
             </h1>
           </div>
         ) : (
-          <div className="max-w-7xl mx-auto grid grid-cols-2 gap-1.5 pt-10">
+          <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-1.5 pt-10 p-2">
             {myrecipes?.map((myrecipe) => (
               <div
                 key={myrecipe?._id}

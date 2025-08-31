@@ -30,7 +30,7 @@ const RecipeDetails = () => {
     <div
       className={`flex justify-center items-center w-full min-h-screen bg-gray-100 mb-0 ${
         theme ? "dark" : ""
-      }  dark:bg-zinc-600 `}
+      }  dark:bg-zinc-600 p-2`}
     >
       <div className="bg-white max-w-7xl mx-auto rounded-lg shadow-lg w-full max-w-8xl overflow-hidden m-4">
         <img
