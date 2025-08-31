@@ -113,8 +113,8 @@ const MyRecipes = () => {
     <div className={`${theme ? "dark" : ""}  dark:bg-zinc-600 min-h-screen`}>
       <div className=" dark:bg-zinc-600">
         {myrecipes?.length == 0 ? (
-          <div className="text-center">
-            <h1 className="font-extrabold text-4xl dark:text-gray-300">
+          <div className="text-center p-4">
+            <h1 className="font-bold text-xl dark:text-gray-300">
               No Recipe Found
             </h1>
           </div>

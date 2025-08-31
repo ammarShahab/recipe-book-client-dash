@@ -7,12 +7,13 @@ const RecipeCard = ({ recipe }) => {
 
   const { setIsLoading } = use(AuthContext);
 
-  const { _id, title, likes, cuisine, image, prepTime, ingredients } = recipe;
+  const { _id, title, likes, image, ingredients } = recipe;
   const navigate = useNavigate();
 
   const handleViewDetails = (id) => {
-    setIsLoading(false);
+    setIsLoading(true);
     navigate(`/recipe/${id}`);
+    setIsLoading(false);
   };
 
   return (

@@ -34,7 +34,7 @@ const NewsLetter = () => {
             />
             <button
               type="button"
-              className="w-2/5 p-3 font-semibold rounded-r-lg sm:w-1/3 bg-green-500 dark:bg-violet-600 dark:text-gray-50"
+              className="w-2/5 p-3 font-semibold rounded-r-lg sm:w-1/3 bg-green-500  dark:text-gray-50"
             >
               Subscribe
             </button>

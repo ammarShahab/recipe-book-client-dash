@@ -129,7 +129,7 @@ const NavBar = () => {
                 />
 
                 <Tooltip
-                  className="p-4 space-y-4"
+                  className="p-4 space-y-4 z-50"
                   anchorSelect="#clickable"
                   clickable
                 >
