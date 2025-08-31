@@ -5,7 +5,9 @@ const MyRecipesInTable = () => {
   const myRecipes = useLoaderData();
   return (
     <div className="overflow-x-auto p-4">
-      <h1 className="text-center text-2xl font-bold mb-4">My Added Recipes</h1>
+      <h1 className="text-center text-2xl font-bold mb-4 dark:text-gray-200">
+        My Added Recipes
+      </h1>
       <table className="table table-zebra w-full rounded-lg shadow-lg">
         <thead className="bg-gray-100 text-gray-700">
           <tr>
