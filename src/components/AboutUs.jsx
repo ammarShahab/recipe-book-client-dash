@@ -1,16 +1,24 @@
+import { useContext } from "react";
+import AuthContext from "./context/AuthContext";
+
 const AboutUs = () => {
+  const { theme } = useContext(AuthContext);
   return (
-    <div className="max-w-5xl mx-auto px-4 py-10 text-gray-800">
-      <div className="bg-white p-8 rounded-xl shadow-lg border border-gray-200">
-        <h1 className="text-4xl font-bold text-center text-indigo-700 mb-6">
+    <div
+      className={` px-4 py-10 text-gray-800 ${
+        theme ? "dark" : ""
+      }  dark:bg-zinc-600 `}
+    >
+      <div className="max-w-7xl mx-auto  bg-white p-8 rounded-xl shadow-lg dark:bg-zinc-400">
+        <h1 className="text-4xl font-bold text-center text-amber-950 mb-6 dark:text-gray-200">
           About Us - Dish Diary 🍽️
         </h1>
 
         <section className="space-y-4 mb-8">
-          <h2 className="text-2xl font-semibold">
+          <h2 className="text-2xl font-semibold dark:text-gray-200">
             Welcome to Dish Diary: Your Culinary Companion
           </h2>
-          <p>
+          <p className="dark:text-gray-200">
             In a world where food transcends borders, tells stories, and brings
             people together, Dish Diary is your trusted platform to capture,
             create, and celebrate the joy of cooking. Built for food lovers,
@@ -18,7 +26,7 @@ const AboutUs = () => {
             kitchen, Dish Diary is more than a recipe app — it’s a digital
             culinary journal tailored just for you.
           </p>
-          <p>
+          <p className="dark:text-gray-200">
             At Dish Diary, we believe every meal has a memory, and every recipe
             is worth preserving. Our mission is simple: to empower users to
             curate their personal culinary collections, discover dishes from
@@ -27,7 +35,7 @@ const AboutUs = () => {
           </p>
         </section>
 
-        <section className="space-y-4 mb-8">
+        <section className="space-y-4 mb-8 dark:text-gray-200">
           <h2 className="text-2xl font-semibold">
             The Inspiration Behind Dish Diary
           </h2>
@@ -55,7 +63,7 @@ const AboutUs = () => {
           </p>
         </section>
 
-        <section className="space-y-4 mb-8">
+        <section className="space-y-4 mb-8 dark:text-gray-200">
           <h2 className="text-2xl font-semibold">Our Mission</h2>
           <p>
             Our mission is to provide a delightful and accessible digital
@@ -75,7 +83,7 @@ const AboutUs = () => {
           </p>
         </section>
 
-        <section className="space-y-4 mb-8">
+        <section className="space-y-4 mb-8 dark:text-gray-200">
           <h2 className="text-2xl font-semibold">
             What Makes Dish Diary Special?
           </h2>
@@ -103,7 +111,7 @@ const AboutUs = () => {
           </ul>
         </section>
 
-        <section className="space-y-4 mb-8">
+        <section className="space-y-4 mb-8 dark:text-gray-200">
           <h2 className="text-2xl font-semibold">Who Can Use Dish Diary?</h2>
           <p>Anyone who loves food! Whether you're a:</p>
           <ul className="list-disc pl-5 space-y-1">
@@ -116,7 +124,7 @@ const AboutUs = () => {
           <p>Dish Diary is made for you.</p>
         </section>
 
-        <section className="space-y-4 mb-8">
+        <section className="space-y-4 mb-8 dark:text-gray-200">
           <h2 className="text-2xl font-semibold">A Note on Community</h2>
           <p>
             Dish Diary isn’t just an app — it’s a community of food lovers who
@@ -124,26 +132,26 @@ const AboutUs = () => {
           </p>
         </section>
 
-        <section className="text-center mt-10 space-y-2">
-          <p className="text-lg font-semibold text-indigo-600">
+        <section className="text-center mt-10 space-y-2 ">
+          <p className="text-lg font-semibold text-indigo-600 dark:text-gray-200">
             We’re so glad you’re here. Whether you upload, explore, or get
             inspired — you’re part of Dish Diary. 🍳
           </p>
-          <p className="text-gray-600">
+          <p className="text-gray-600 dark:text-gray-200">
             Let’s cook something amazing together.
           </p>
         </section>
 
-        <section className="mt-10">
-          <h2 className="text-xl font-semibold text-gray-800 mb-2">
+        <section className="mt-10 ">
+          <h2 className="text-xl font-semibold text-gray-800 mb-2 dark:text-gray-200">
             Contact & Connect
           </h2>
-          <ul className="text-gray-700 space-y-1">
+          <ul className="text-gray-700 space-y-1 dark:text-gray-200">
             <li>
               📧 Email:{" "}
               <a
                 href="mailto:dishdiary.support@gmail.com"
-                className="text-blue-600 hover:underline"
+                className="text-blue-600 hover:underline dark:text-gray-200"
               >
                 dishdiary.support@gmail.com
               </a>
@@ -152,7 +160,7 @@ const AboutUs = () => {
               💻 GitHub:{" "}
               <a
                 href="https://github.com/ashahab007"
-                className="text-blue-600 hover:underline"
+                className="text-blue-600 hover:underline dark:text-gray-200"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -163,7 +171,7 @@ const AboutUs = () => {
               🔗 LinkedIn:{" "}
               <a
                 href="https://www.linkedin.com/in/md-ammar-shahab-88ab4a235/"
-                className="text-blue-600 hover:underline"
+                className="text-blue-600 hover:underline dark:text-gray-200"
                 target="_blank"
                 rel="noopener noreferrer"
               >

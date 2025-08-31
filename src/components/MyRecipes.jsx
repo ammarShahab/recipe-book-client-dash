@@ -13,7 +13,7 @@ const MyRecipes = () => {
   const categories = ["Lunch", "Dessert", "Dinner", "Vegan", "Breakfast"];
   const [selectedCategory, setSelectedCategory] = useState([]);
   const [selectedRecipe, setSelectedRecipe] = useState(null);
-  const { theme, setTheme } = useContext(AuthContext);
+  const { theme } = useContext(AuthContext);
 
   const onOpenModal = (recipe) => {
     setSelectedRecipe(recipe);
@@ -110,7 +110,7 @@ const MyRecipes = () => {
   };
 
   return (
-    <div className={`${theme ? "dark" : ""}  dark:bg-zinc-600`}>
+    <div className={`${theme ? "dark" : ""}  dark:bg-zinc-600 min-h-screen`}>
       <div className=" dark:bg-zinc-600">
         {myrecipes?.length == 0 ? (
           <div className="text-center">

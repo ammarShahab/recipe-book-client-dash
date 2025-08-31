@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import AuthContext from "./context/AuthContext";
 
 const NewsLetter = () => {
-  const { theme, setTheme } = useContext(AuthContext);
+  const { theme } = useContext(AuthContext);
   return (
     <div
       className="w-full dark:bg-gray-500 py-20"
@@ -30,7 +30,7 @@ const NewsLetter = () => {
             <input
               type="text"
               placeholder="example@email.com"
-              className="w-3/5 p-3 rounded-l-lg sm:w-2/3 border border-amber-900"
+              className="w-3/5 p-3 rounded-l-lg sm:w-2/3 border border-amber-900 dark:text-gray-200 dark:border-amber-50"
             />
             <button
               type="button"

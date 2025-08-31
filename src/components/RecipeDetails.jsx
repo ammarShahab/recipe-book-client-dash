@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { FaHeart } from "react-icons/fa";
 import { useLoaderData } from "react-router";
+import AuthContext from "./context/AuthContext";
 
 const RecipeDetails = () => {
   const recipe = useLoaderData();
+  const { theme } = useContext(AuthContext);
+
   // console.log(recipe);
   const {
     title,
@@ -24,18 +27,26 @@ const RecipeDetails = () => {
   };
 
   return (
-    <div className="flex justify-center items-center w-full min-h-screen bg-gray-100 mb-0">
-      <div className="bg-white rounded-lg shadow-lg w-full max-w-8xl overflow-hidden m-4">
+    <div
+      className={`flex justify-center items-center w-full min-h-screen bg-gray-100 mb-0 ${
+        theme ? "dark" : ""
+      }  dark:bg-zinc-600 `}
+    >
+      <div className="bg-white max-w-7xl mx-auto rounded-lg shadow-lg w-full max-w-8xl overflow-hidden m-4">
         <img
           src={image}
           alt="Fluffy Pancakes"
-          className="w-full h-64 object-cover"
+          className="w-full h-full object-cover"
         />
-        <div className="p-5">
-          <h2 className="text-2xl font-bold text-gray-800 mb-2">{title}</h2>
+        <div className="p-5 dark:bg-gray-400">
+          <h2 className="text-2xl font-bold text-gray-800 mb-2 dark:text-gray-200">
+            {title}
+          </h2>
           <div className="flex justify-between text-gray-600 text-sm mb-3">
-            <span>Cuisine: {cuisine}</span>
-            <span>Preparation Time: {prepTime} min</span>
+            <span className="dark:text-gray-200">Cuisine: {cuisine}</span>
+            <span className="dark:text-gray-200">
+              Preparation Time: {prepTime} min
+            </span>
           </div>
           <div className="flex flex-wrap gap-2 mb-3">
             {isChecked?.map((tag) => (
@@ -48,18 +59,20 @@ const RecipeDetails = () => {
             ))}
           </div>
           <div className="mb-4">
-            <h3 className="text-lg font-semibold text-gray-700 mb-1">
+            <h3 className="text-lg font-semibold text-gray-700 mb-1 dark:text-gray-200">
               Ingredients
             </h3>
-            <ul className="list-disc pl-5 text-gray-600 text-sm">
+            <ul className="list-disc pl-5 text-gray-600 text-sm dark:text-gray-200">
               {ingredients}
             </ul>
           </div>
           <div className="mb-4">
-            <h3 className="text-lg font-semibold text-gray-700 mb-1">
+            <h3 className="text-lg font-semibold text-gray-700 mb-1 dark:text-gray-200">
               Instructions
             </h3>
-            <p className="text-gray-600 text-sm">{instructions}</p>
+            <p className="text-gray-600 text-sm dark:text-gray-200">
+              {instructions}
+            </p>
           </div>
           <button
             onClick={toggleLike}
@@ -72,7 +85,9 @@ const RecipeDetails = () => {
             <FaHeart className="text-white" />
             {isLiked ? "Liked" : "Like"}
           </button>
-          <div className="text-gray-600 text-sm mt-2">Likes: {likes}</div>
+          <div className="text-gray-600 text-sm mt-2 dark:text-gray-200">
+            Likes: {likes}
+          </div>
         </div>
       </div>
     </div>
