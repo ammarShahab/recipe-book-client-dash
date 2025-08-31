@@ -36,7 +36,9 @@ const MyRecipesInTable = () => {
       </table>
 
       {myRecipes.length === 0 && (
-        <p className="text-center text-gray-500 mt-4">No recipes found.</p>
+        <p className="text-center text-gray-500 mt-4 dark:text-gray-200">
+          No recipes found.
+        </p>
       )}
     </div>
   );

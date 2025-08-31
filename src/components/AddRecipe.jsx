@@ -4,8 +4,9 @@ import AuthContext from "./context/AuthContext";
 
 const AddRecipe = () => {
   const [selectedCategory, setSelectedCategory] = useState([]);
-  const loggedInUser = use(AuthContext);
-  // console.log(loggedInUser?.user?.email);
+  const { user, theme } = use(AuthContext);
+
+  // console.log(user);
 
   const categories = ["Lunch", "Dessert", "Dinner", "Vegan", "Breakfast"];
 
@@ -17,6 +18,7 @@ const AddRecipe = () => {
         : [...prev, value]
     );
   };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -27,8 +29,8 @@ const AddRecipe = () => {
     const cuisine = form.cuisine.value;
     const prepTime = form.prepTime.value;
     const likes = form.likes.value;
-    const email = loggedInUser?.user?.email;
-    const name = loggedInUser?.user?.displayName;
+    const email = user?.email;
+    const name = user?.displayName;
 
     /* console.log(
       image,
@@ -49,7 +51,7 @@ const AddRecipe = () => {
       prepTime,
       likes,
       selectedCategory,
-      loggedInUser,
+      // user,
       email,
       name,
     };
@@ -77,13 +79,17 @@ const AddRecipe = () => {
       });
   };
   return (
-    <div className="max-w-3xl mx-auto p-6 bg-white shadow-md rounded-lg mt-10 mb-20">
-      <h1 className="text-3xl font-bold mb-6 text-center text-gray-800">
+    <div
+      className={`max-w-3xl mx-auto p-6 bg-white shadow-md rounded-lg mt-10 mb-20 ${
+        theme ? "dark" : ""
+      }  dark:bg-zinc-400`}
+    >
+      <h1 className="text-3xl font-bold mb-6 text-center text-gray-800 dark:text-gray-200">
         Add a New Recipe
       </h1>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className="flex flex-col">
-          <label className="text-sm font-medium text-gray-700 mb-1">
+          <label className="text-sm font-medium text-gray-700 mb-1 dark:text-gray-200">
             Recipe Image URL
           </label>
           <input
@@ -91,12 +97,12 @@ const AddRecipe = () => {
             id="image"
             name="image"
             placeholder="Enter image URL"
-            className="border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:text-gray-200"
           />
         </div>
 
         <div className="flex flex-col">
-          <label className="text-sm font-medium text-gray-700 mb-1">
+          <label className="text-sm font-medium text-gray-700 mb-1 dark:text-gray-200">
             Title
           </label>
           <input
@@ -104,12 +110,12 @@ const AddRecipe = () => {
             id="title"
             name="title"
             required
-            className="border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:text-gray-200"
           />
         </div>
 
         <div className="flex flex-col">
-          <label className="text-sm font-medium text-gray-700 mb-1">
+          <label className="text-sm font-medium text-gray-700 mb-1 dark:text-gray-200">
             Ingredients
           </label>
           <textarea
@@ -117,12 +123,12 @@ const AddRecipe = () => {
             name="ingredients"
             required
             rows="4"
-            className="border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:text-gray-200"
           ></textarea>
         </div>
 
         <div className="flex flex-col">
-          <label className="text-sm font-medium text-gray-700 mb-1">
+          <label className="text-sm font-medium text-gray-700 mb-1 dark:text-gray-200">
             Instructions
           </label>
           <textarea
@@ -130,18 +136,18 @@ const AddRecipe = () => {
             name="instructions"
             required
             rows="6"
-            className="border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:text-gray-200"
           ></textarea>
         </div>
 
         <div className="flex flex-col">
-          <label className="text-sm font-medium text-gray-700 mb-1">
+          <label className="text-sm font-medium text-gray-700 mb-1 dark:text-gray-200">
             Cuisine Type
           </label>
           <select
             id="cuisine"
             name="cuisine"
-            className="border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:text-gray-200"
           >
             <option value="Italian">Italian</option>
             <option value="Mexican">Mexican</option>
@@ -152,7 +158,7 @@ const AddRecipe = () => {
         </div>
 
         <div className="flex flex-col">
-          <label className="text-sm font-medium text-gray-700 mb-1">
+          <label className="text-sm font-medium text-gray-700 mb-1 dark:text-gray-200">
             Preparation Time (minutes)
           </label>
           <input
@@ -161,13 +167,13 @@ const AddRecipe = () => {
             name="prepTime"
             required
             min="0"
-            className="border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:text-gray-200"
           />
         </div>
 
         {/* Categories section */}
         <div className="flex flex-col">
-          <label className="text-sm font-medium text-gray-700 mb-1">
+          <label className="text-sm font-medium text-gray-700 mb-1 dark:text-gray-200">
             Categories
           </label>
           <div className="flex flex-col gap-2">
@@ -180,9 +186,12 @@ const AddRecipe = () => {
                   value={category}
                   // checked={selectedCategory.includes(category)}
                   onChange={handleChecked}
-                  className="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                  className="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500 dark:text-gray-200"
                 />
-                <label key={index} className="text-sm text-gray-700">
+                <label
+                  key={index}
+                  className="text-sm text-gray-700 dark:text-gray-200"
+                >
                   {category}
                 </label>
                 {/* </>; */}
@@ -192,7 +201,7 @@ const AddRecipe = () => {
         </div>
 
         <div className="flex flex-col">
-          <label className="text-sm font-medium text-gray-700 mb-1">
+          <label className="text-sm font-medium text-gray-700 mb-1 dark:text-gray-200">
             Likes
           </label>
           <input
@@ -200,8 +209,8 @@ const AddRecipe = () => {
             id="likes"
             name="likes"
             defaultValue={0}
-            // readOnly
-            className="border border-gray-300 rounded-md p-2 bg-gray-100 cursor-not-allowed"
+            readOnly
+            className="border border-gray-300 rounded-md p-2 bg-gray-100 dark:bg-gray-400 cursor-not-allowed dark:text-gray-200"
           />
         </div>
 
