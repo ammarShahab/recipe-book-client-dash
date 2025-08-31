@@ -16,30 +16,35 @@ const MyRecipesInTable = () => {
             <th>Likes</th>
           </tr>
         </thead>
-        <tbody>
-          {myRecipes.map((recipe, index) => (
-            <tr key={recipe._id}>
-              <td>{index + 1}</td>
-              <td>
-                <img
-                  src={recipe.image}
-                  alt={recipe.title}
-                  className="w-16 h-16 object-cover rounded-md"
-                />
+        <tbody className="dark:bg-gray-400">
+          {myRecipes.length === 0 ? (
+            <tr className="">
+              <td
+                colSpan="5"
+                className="text-center text-gray-500 mt-4 dark:text-gray-200 col-span-4"
+              >
+                No recipes found.
               </td>
-              <td className="font-medium">{recipe.title}</td>
-              <td>{recipe.cuisine}</td>
-              <td>❤️ {recipe.likes}</td>
             </tr>
-          ))}
+          ) : (
+            myRecipes.map((recipe, index) => (
+              <tr key={recipe._id}>
+                <td>{index + 1}</td>
+                <td>
+                  <img
+                    src={recipe.image}
+                    alt={recipe.title}
+                    className="w-16 h-16 object-cover rounded-md"
+                  />
+                </td>
+                <td className="font-medium">{recipe.title}</td>
+                <td>{recipe.cuisine}</td>
+                <td>❤️ {recipe.likes}</td>
+              </tr>
+            ))
+          )}
         </tbody>
       </table>
-
-      {myRecipes.length === 0 && (
-        <p className="text-center text-gray-500 mt-4 dark:text-gray-200">
-          No recipes found.
-        </p>
-      )}
     </div>
   );
 };
