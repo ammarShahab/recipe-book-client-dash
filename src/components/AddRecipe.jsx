@@ -179,7 +179,7 @@ const AddRecipe = () => {
           <div className="flex flex-col gap-2">
             {categories.map((category, index) => (
               // <>
-              <div className="flex items-center gap-2">
+              <div key={index} className="flex items-center gap-2">
                 <input
                   type="checkbox"
                   name={category}
