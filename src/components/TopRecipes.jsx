@@ -10,8 +10,8 @@ const TopRecipes = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    // fetch("https://b11a10-server-side-ashahab007.vercel.app/top-recipes")
-    fetch("http://localhost:3000/top-recipes")
+    fetch("https://b11a10-server-side-ashahab007.vercel.app/top-recipes")
+      // fetch("http://localhost:3000/top-recipes")
       .then((res) => res.json())
       .then((data) => {
         // console.log(data);

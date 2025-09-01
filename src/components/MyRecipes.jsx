@@ -84,8 +84,8 @@ const MyRecipes = () => {
       isChecked: selectedCategory,
     };
     // console.log(updatedRecipe);
-    // fetch(`https://b11a10-server-side-ashahab007.vercel.app/recipes/${id}`, {
-    fetch(`http://localhost:3000/recipes/${id}`, {
+    fetch(`https://b11a10-server-side-ashahab007.vercel.app/recipes/${id}`, {
+      // fetch(`http://localhost:3000/recipes/${id}`, {
       method: "PUT",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(updatedRecipe),

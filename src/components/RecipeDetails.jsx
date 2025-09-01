@@ -43,11 +43,14 @@ const RecipeDetails = () => {
 
     setIsLiking(true);
     try {
-      const res = await fetch(`http://localhost:3000/recipes/${_id}/like`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ userId: user.uid }), // 👈 sending userId
-      });
+      const res = await fetch(
+        `b11a10-server-side-ashahab007.vercel.app/${_id}/like`,
+        {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ userId: user.uid }), // 👈 sending userId
+        }
+      );
 
       const data = await res.json();
 
