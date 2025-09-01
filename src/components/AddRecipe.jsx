@@ -56,7 +56,7 @@ const AddRecipe = () => {
       name,
     };
 
-    console.log("Added recipe", newAddedRecipes);
+    // console.log("Added recipe", newAddedRecipes);
 
     fetch("https://b11a10-server-side-ashahab007.vercel.app/recipes", {
       method: "POST",
@@ -67,7 +67,7 @@ const AddRecipe = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log("recipes added to the dB succesfully", data);
+        // console.log("recipes added to the dB succesfully", data);
         if (data.insertedId) {
           Swal.fire({
             title: "Recipe Added Successfully",

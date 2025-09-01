@@ -31,7 +31,7 @@ const LogIn = () => {
       .then((userCredential) => {
         const user = userCredential.user;
         setIsLoading(true);
-        console.log(user);
+        // console.log(user);
         setUser(user);
         setErrorMessage("");
 
@@ -41,7 +41,7 @@ const LogIn = () => {
       .catch((error) => {
         // const errorCode = error.code;
         const errorMessage = error.message;
-        console.log(errorMessage);
+        // console.log(errorMessage);
         setErrorMessage(errorMessage);
       });
   };

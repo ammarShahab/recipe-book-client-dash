@@ -73,7 +73,7 @@ const MyRecipes = () => {
   };
 
   const handleUpdate = (e, id) => {
-    console.log(id);
+    // console.log(id);
 
     e.preventDefault();
     const formData = new FormData(e.target);
@@ -83,7 +83,7 @@ const MyRecipes = () => {
       ...data,
       isChecked: selectedCategory,
     };
-    console.log(updatedRecipe);
+    // console.log(updatedRecipe);
     // fetch(`https://b11a10-server-side-ashahab007.vercel.app/recipes/${id}`, {
     fetch(`http://localhost:3000/recipes/${id}`, {
       method: "PUT",
@@ -92,7 +92,7 @@ const MyRecipes = () => {
     })
       .then((res) => res.json())
       .then((result) => {
-        console.log("Update Result", result);
+        // console.log("Update Result", result);
         if (result.modifiedCount > 0) {
           Swal.fire({
             position: "top-end",

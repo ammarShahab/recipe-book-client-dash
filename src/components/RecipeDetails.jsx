@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { FaHeart } from "react-icons/fa";
 import { useLoaderData } from "react-router";
 import AuthContext from "./context/AuthContext";
@@ -18,11 +18,21 @@ const RecipeDetails = () => {
     ingredients,
     image,
     cuisine,
+    likedBy = [], // 👈 backend sends this
   } = recipe;
 
   const [likes, setLikes] = useState(initialLikes || 0);
   const [isLiking, setIsLiking] = useState(false);
   const [hasLiked, setHasLiked] = useState(false);
+
+  // 👇 Check if user already liked when page loads
+  useEffect(() => {
+    if (user && likedBy.includes(user.uid)) {
+      setHasLiked(true);
+    }
+  }, [user, likedBy]);
+
+  // console.log(user.uid);
 
   const handleLike = async () => {
     if (!user) {
@@ -44,9 +54,8 @@ const RecipeDetails = () => {
       if (data.success) {
         setLikes(data.likes);
         setHasLiked(true);
-        toast.success(data.message);
       } else {
-        toast.error(data.error || "Failed to like recipe");
+        toast.error(data.message || data.error || "Failed to like recipe");
       }
     } catch (err) {
       console.error("Error liking recipe:", err);
@@ -92,7 +101,7 @@ const RecipeDetails = () => {
               ${isLiking ? "opacity-50 cursor-not-allowed" : ""}`}
           >
             <FaHeart className="text-white" />
-            {isLiking ? "Liking..." : hasLiked ? "Liked!" : "Like"}
+            {isLiking ? "Liking..." : hasLiked ? "Liked" : "Like"}
           </button>
 
           <div className="text-gray-600 text-sm mt-2">Likes: {likes}</div>

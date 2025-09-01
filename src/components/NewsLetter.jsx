@@ -17,9 +17,9 @@ const NewsLetter = () => {
 
   const handleSendEmail = async (e) => {
     e.preventDefault();
-    console.log(form);
+    // console.log(form);
 
-    console.log(form.current);
+    // console.log(form.current);
 
     emailjs
       .sendForm(
