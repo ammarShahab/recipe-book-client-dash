@@ -36,6 +36,7 @@ const RecipeDetails = () => {
       const res = await fetch(`http://localhost:3000/recipes/${_id}/like`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ userId: user.uid }), // 👈 sending userId
       });
 
       const data = await res.json();
@@ -57,8 +58,8 @@ const RecipeDetails = () => {
 
   return (
     <div className="flex justify-center items-center w-full min-h-screen bg-gray-100 p-4">
-      <div className="bg-white max-w-3xl rounded-lg shadow-lg overflow-hidden">
-        <img src={image} alt={title} className="w-full h-80 object-cover" />
+      <div className="bg-white max-w-7xl rounded-lg shadow-lg overflow-hidden">
+        <img src={image} alt={title} className="w-full h-full object-cover" />
         <div className="p-5">
           <h2 className="text-2xl font-bold mb-2">{title}</h2>
           <div className="flex justify-between text-sm text-gray-600 mb-3">
