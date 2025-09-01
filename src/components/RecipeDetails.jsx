@@ -2,92 +2,99 @@ import React, { useContext, useState } from "react";
 import { FaHeart } from "react-icons/fa";
 import { useLoaderData } from "react-router";
 import AuthContext from "./context/AuthContext";
+import toast from "react-hot-toast";
 
 const RecipeDetails = () => {
   const recipe = useLoaderData();
-  const { theme } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
 
-  // console.log(recipe);
   const {
+    _id,
     title,
     prepTime,
-    likes,
+    likes: initialLikes,
     isChecked,
     instructions,
     ingredients,
     image,
     cuisine,
   } = recipe;
-  // const [islikes, setIsLikes] = useState(likes);
-  const [isLiked, setIsLiked] = useState(false);
 
-  const toggleLike = () => {
-    setIsLiked(true);
-    // setLikes(isLiked ? likes - 1 : likes + 1);
+  const [likes, setLikes] = useState(initialLikes || 0);
+  const [isLiking, setIsLiking] = useState(false);
+  const [hasLiked, setHasLiked] = useState(false);
+
+  const handleLike = async () => {
+    if (!user) {
+      toast.error("Please login to like recipes");
+      return;
+    }
+    if (isLiking || hasLiked) return;
+
+    setIsLiking(true);
+    try {
+      const res = await fetch(`http://localhost:3000/recipes/${_id}/like`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+      });
+
+      const data = await res.json();
+
+      if (data.success) {
+        setLikes(data.likes);
+        setHasLiked(true);
+        toast.success(data.message);
+      } else {
+        toast.error(data.error || "Failed to like recipe");
+      }
+    } catch (err) {
+      console.error("Error liking recipe:", err);
+      toast.error("Something went wrong.");
+    } finally {
+      setIsLiking(false);
+    }
   };
 
   return (
-    <div
-      className={`flex justify-center items-center w-full min-h-screen bg-gray-100 mb-0 ${
-        theme ? "dark" : ""
-      }  dark:bg-zinc-600 p-2`}
-    >
-      <div className="bg-white max-w-7xl mx-auto rounded-lg shadow-lg w-full max-w-8xl overflow-hidden m-4">
-        <img
-          src={image}
-          alt="Fluffy Pancakes"
-          className="w-full h-full object-cover"
-        />
-        <div className="p-5 dark:bg-gray-400">
-          <h2 className="text-2xl font-bold text-gray-800 mb-2 dark:text-gray-200">
-            {title}
-          </h2>
-          <div className="flex justify-between text-gray-600 text-sm mb-3">
-            <span className="dark:text-gray-200">Cuisine: {cuisine}</span>
-            <span className="dark:text-gray-200">
-              Preparation Time: {prepTime} min
-            </span>
+    <div className="flex justify-center items-center w-full min-h-screen bg-gray-100 p-4">
+      <div className="bg-white max-w-3xl rounded-lg shadow-lg overflow-hidden">
+        <img src={image} alt={title} className="w-full h-80 object-cover" />
+        <div className="p-5">
+          <h2 className="text-2xl font-bold mb-2">{title}</h2>
+          <div className="flex justify-between text-sm text-gray-600 mb-3">
+            <span>Cuisine: {cuisine}</span>
+            <span>Prep Time: {prepTime} min</span>
           </div>
+
           <div className="flex flex-wrap gap-2 mb-3">
             {isChecked?.map((tag) => (
               <span
                 key={tag}
-                className="bg-cyan-100 text-cyan-800 text-xs font-medium px-2.5 py-1 rounded"
+                className="bg-cyan-100 text-cyan-800 text-xs px-2 py-1 rounded"
               >
                 {tag}
               </span>
             ))}
           </div>
-          <div className="mb-4">
-            <h3 className="text-lg font-semibold text-gray-700 mb-1 dark:text-gray-200">
-              Ingredients
-            </h3>
-            <ul className="list-disc pl-5 text-gray-600 text-sm dark:text-gray-200">
-              {ingredients}
-            </ul>
-          </div>
-          <div className="mb-4">
-            <h3 className="text-lg font-semibold text-gray-700 mb-1 dark:text-gray-200">
-              Instructions
-            </h3>
-            <p className="text-gray-600 text-sm dark:text-gray-200">
-              {instructions}
-            </p>
-          </div>
+
+          <h3 className="text-lg font-semibold mb-1">Ingredients</h3>
+          <p className="text-sm mb-3">{ingredients}</p>
+
+          <h3 className="text-lg font-semibold mb-1">Instructions</h3>
+          <p className="text-sm mb-3">{instructions}</p>
+
           <button
-            onClick={toggleLike}
-            className={`flex items-center gap-2 px-4 py-2 rounded text-white text-sm font-medium ${
-              isLiked
-                ? "bg-green-500 hover:bg-green-600"
-                : "bg-red-500 hover:bg-red-600"
-            } transition-colors`}
+            onClick={handleLike}
+            disabled={isLiking || hasLiked}
+            className={`flex items-center gap-2 px-4 py-2 rounded text-white text-sm font-medium transition-colors
+              ${hasLiked ? "bg-green-500" : "bg-red-500 hover:bg-red-600"}
+              ${isLiking ? "opacity-50 cursor-not-allowed" : ""}`}
           >
             <FaHeart className="text-white" />
-            {isLiked ? "Liked" : "Like"}
+            {isLiking ? "Liking..." : hasLiked ? "Liked!" : "Like"}
           </button>
-          <div className="text-gray-600 text-sm mt-2 dark:text-gray-200">
-            Likes: {likes}
-          </div>
+
+          <div className="text-gray-600 text-sm mt-2">Likes: {likes}</div>
         </div>
       </div>
     </div>
