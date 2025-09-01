@@ -1,7 +1,7 @@
 import { FaBook, FaUser, FaThumbsUp } from "react-icons/fa";
 
 const StatsCard = ({ allRecipes = [], myRecipes = [], topLikedRecipe }) => {
-  console.log("top", topLikedRecipe);
+  // console.log("top", topLikedRecipe);
 
   // Calculate stats
   const totalRecipes = allRecipes.length;

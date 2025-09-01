@@ -7,8 +7,8 @@ const OverView = () => {
   const [allRecipes, setAllRecipes] = useState([]);
   const [myRecipes, setMyRecipes] = useState([]);
   const { user, theme } = use(AuthContext);
-  const userEmail = user.email; // Ideally from auth context
-  console.log(user.email);
+  const userEmail = user.email;
+  // console.log(user.email);
 
   useEffect(() => {
     // Fetch all recipes
