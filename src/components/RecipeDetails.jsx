@@ -6,7 +6,7 @@ import toast from "react-hot-toast";
 
 const RecipeDetails = () => {
   const recipe = useLoaderData();
-  const { user } = useContext(AuthContext);
+  const { user, theme } = useContext(AuthContext);
 
   const {
     _id,
@@ -70,14 +70,22 @@ const RecipeDetails = () => {
   };
 
   return (
-    <div className="flex justify-center items-center w-full min-h-screen bg-gray-100 p-4">
-      <div className="bg-white max-w-7xl rounded-lg shadow-lg overflow-hidden">
+    <div
+      className={`flex justify-center items-center w-full min-h-screen bg-gray-100 p-4 ${
+        theme ? "dark" : ""
+      }  dark:bg-zinc-600`}
+    >
+      <div className="bg-white max-w-7xl rounded-lg shadow-lg overflow-hidden dark:bg-gray-600">
         <img src={image} alt={title} className="w-full h-full object-cover" />
         <div className="p-5">
-          <h2 className="text-2xl font-bold mb-2">{title}</h2>
-          <div className="flex justify-between text-sm text-gray-600 mb-3">
+          <h2 className="text-2xl font-bold mb-2 dark:text-gray-300">
+            {title}
+          </h2>
+          <div className="flex justify-between text-sm text-gray-600 mb-3 dark:text-gray-300">
             <span>Cuisine: {cuisine}</span>
-            <span>Prep Time: {prepTime} min</span>
+            <span className="dark:text-gray-300">
+              Prep Time: {prepTime} min
+            </span>
           </div>
 
           <div className="flex flex-wrap gap-2 mb-3">
@@ -91,11 +99,15 @@ const RecipeDetails = () => {
             ))}
           </div>
 
-          <h3 className="text-lg font-semibold mb-1">Ingredients</h3>
-          <p className="text-sm mb-3">{ingredients}</p>
+          <h3 className="text-lg font-semibold mb-1 dark:text-gray-300">
+            Ingredients
+          </h3>
+          <p className="text-sm mb-3 dark:text-gray-300">{ingredients}</p>
 
-          <h3 className="text-lg font-semibold mb-1">Instructions</h3>
-          <p className="text-sm mb-3">{instructions}</p>
+          <h3 className="text-lg font-semibold mb-1 dark:text-gray-300">
+            Instructions
+          </h3>
+          <p className="text-sm mb-3 dark:text-gray-300">{instructions}</p>
 
           <button
             onClick={handleLike}
@@ -108,7 +120,9 @@ const RecipeDetails = () => {
             {isLiking ? "Liking..." : hasLiked ? "Liked" : "Like"}
           </button>
 
-          <div className="text-gray-600 text-sm mt-2">Likes: {likes}</div>
+          <div className="text-gray-600 text-sm mt-2 dark:text-gray-300">
+            Likes: {likes}
+          </div>
         </div>
       </div>
     </div>
